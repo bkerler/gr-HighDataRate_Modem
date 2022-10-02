@@ -677,6 +677,7 @@
 
 #include "Chunk_ExtractQPSK_impl.h"
 #include <gnuradio/io_signature.h>
+#include <boost/format.hpp>
 
 namespace gr {
 namespace HighDataRate_Modem {

@@ -733,7 +733,7 @@ int Extract_Frame_impl::general_work(int noutput_items,
 
       std::vector<tag_t> tags;
       get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0) + noutput_items);
-      GR_LOG_DEBUG(d_logger, boost::format("writing tag size %llu") % (tags.size()));
+      d_logger->debug("writing tag size {}", tags.size());
 
       if (int(tags.size())<3)  // STOP and move on to next 30000 bits
       {
@@ -757,7 +757,7 @@ int Extract_Frame_impl::general_work(int noutput_items,
          int offset_end = int(tags[i+1].offset);
          int delta = offset_end - offset_start;
       
-         GR_LOG_DEBUG(d_logger, boost::format("DELTA %llu") % (delta));
+         d_logger->debug("DELTA {}",delta);
 
          if (delta == 4192)  //4192 includes ASM
          {
@@ -781,7 +781,7 @@ int Extract_Frame_impl::general_work(int noutput_items,
 
       }   // End of IF Statement
 
-      GR_LOG_DEBUG(d_logger, boost::format("DROPPED incrementer value %llu") % (n_dropped_times));
+      d_logger->debug("DROPPED incrementer value {}", n_dropped_times);
 
       consume_each (n_digested);   //tell scheduler runtime the amount of input items consum     
       return n_produced;    //tell scheduler runtime output items

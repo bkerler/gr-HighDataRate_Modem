@@ -745,8 +745,8 @@ TAG_CHUNKpreamble_impl::~TAG_CHUNKpreamble_impl() {}
             d_access_code = (d_access_code << 1) | (access_code[i] & 1);
         }  
 
-       GR_LOG_DEBUG(d_logger, boost::format("Access code: %llx") % d_access_code);
-       GR_LOG_DEBUG(d_logger, boost::format("Mask: %llx") % d_mask);
+       d_logger->debug("Access code: {:x}", d_access_code);
+       d_logger->debug("Mask: {:x}", d_mask);
 
        return true;
     }  
@@ -762,8 +762,8 @@ TAG_CHUNKpreamble_impl::~TAG_CHUNKpreamble_impl() {}
         {
             d_access_code90 = (d_access_code90 << 1) | (access_code90[i] & 1);
         }  
-       GR_LOG_DEBUG(d_logger, boost::format("Access code90: %llx") % d_access_code90);
-       GR_LOG_DEBUG(d_logger, boost::format("Mask90: %llx") % d_mask90);
+       d_logger->debug("Access code90: {:x}", d_access_code90);
+       d_logger->debug("Mask90: {:x}", d_mask90);
        return true;
     }  
 
@@ -806,8 +806,7 @@ int TAG_CHUNKpreamble_impl::work(int noutput_items,
         d_data_reg = (d_data_reg << 1) | (in[i] & 0x1);
 
         if (nwrong == 0 || nwrong == 64) {
-            GR_LOG_DEBUG(d_logger,
-                         boost::format("writing tag at sample %llu") %
+            d_logger->debug("writing tag at sample {}",
                              (abs_out_sample_cnt + i));
             add_item_tag(0,                      // stream ID
                          abs_out_sample_cnt + i, // sample

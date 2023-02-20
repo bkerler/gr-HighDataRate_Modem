@@ -727,9 +727,9 @@ int Chunk_ExtractQPSK_impl::general_work(int noutput_items,
 
       std::vector<tag_t> tags;
       get_tags_in_range(tags, 0, nitems_read(0), nitems_read(0) + noutput_items);
-      GR_LOG_DEBUG(d_logger, boost::format("writing tag size %llu") % (tags.size()));
-      GR_LOG_DEBUG(d_logger, boost::format("N_items_read 0 value    %llu") % (nitems_read(0)));
-      GR_LOG_DEBUG(d_logger, boost::format("N_items_output items value    %llu") % (noutput_items));
+      d_logger->debug("writing tag size {}",tags.size());
+      d_logger->debug("N_items_read 0 value    {}",nitems_read(0));
+      d_logger->debug("N_items_output items value    {}",noutput_items);
 
       if (int(tags.size())<2)  // STOP and move on to next 30000 bits
       {
